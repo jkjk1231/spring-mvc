@@ -1,0 +1,17 @@
+eclipse.preferences.version=1
+encoding//src/main/java/com/zbw/springtest/controller/AddressController.java=UTF-8
+encoding//src/main/java/com/zbw/springtest/controller/UserController.java=UTF-8
+encoding//src/main/java/com/zbw/springtest/dao/impl/AddressDaoImpl.java=UTF-8
+encoding//src/main/java/com/zbw/springtest/dao/impl/AddressDetailDaoImpl.java=UTF-8
+encoding//src/main/java/com/zbw/springtest/dao/impl/UserDaoImpl.java=UTF-8
+encoding//src/main/java/com/zbw/springtest/model/AddressDetail.java=UTF-8
+encoding//src/main/java/com/zbw/springtest/model/AddressList.java=UTF-8
+encoding//src/main/java/com/zbw/springtest/model/AdressDetail.java=UTF-8
+encoding//src/main/java/com/zbw/springtest/model/MediumResult.java=UTF-8
+encoding//src/main/java/com/zbw/springtest/model/VParams.java=UTF-8
+encoding//src/main/java/com/zbw/springtest/model/VResult.java=UTF-8
+encoding//src/main/java/com/zbw/springtest/service/impl/AddressImpl.java=UTF-8
+encoding//src/main/java/com/zbw/springtest/service/impl/HelloImpl.java=UTF-8
+encoding//src/main/java/com/zbw/springtest/service/impl/LoginImpl.java=UTF-8
+encoding//src/main/java/com/zbw/springtest/service/impl/UserImpl.java=UTF-8
+encoding//src/main/java/com/zbw/springtest/servlet/HelloServlet.java=UTF-8
