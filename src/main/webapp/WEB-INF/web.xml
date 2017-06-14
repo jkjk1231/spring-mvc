@@ -1,0 +1,86 @@
+
+
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+	                         http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5" >
+  <display-name>Archetype Created Web Application</display-name>
+  <!-- 请求默认页面，也可为主页 -->
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+
+  <!-- 配置spring的加载文件路径及文件名称,这样就不用applicationContext.xml来专门import beans.xml了 -->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:benas.xml</param-value>
+  </context-param>
+
+  <!-- 区分项目名称，防止默认重名 -->
+  <!--<context-param>-->
+    <!--<param-name>webAppRootKey</param-name>-->
+    <!--<param-value>maven.xxl_web.root</param-value>-->
+  <!--</context-param>-->
+
+  <!-- Spring的log4j监听器 -->
+  <listener>
+    <listener-class>com.zbw.springtest.log4j.SLog4jConfigListener</listener-class>
+  </listener>
+
+  <!-- 自己去写一个监听器来实现加载beans.xml，进而启动spring容器 -->
+  <!-- <listener>
+  	<listener-class>servlet.listener.InitSpringFactoryListener</listener-class>
+  </listener> -->
+
+  <!-- 使用spring自带的监听器,其默认加载的是WEB-INF下的applicationContext.xml -->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+
+  <!--&lt;!&ndash; 字符集 过滤器  &ndash;&gt;-->
+  <!--<filter>-->
+    <!--<filter-name>CharacterEncodingFilter</filter-name>-->
+    <!--<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>-->
+    <!--<init-param>-->
+      <!--<param-name>encoding</param-name>-->
+      <!--<param-value>UTF-8</param-value>-->
+    <!--</init-param>-->
+    <!--<init-param>-->
+      <!--<param-name>forceEncoding</param-name>-->
+      <!--<param-value>true</param-value>-->
+    <!--</init-param>-->
+  <!--</filter>-->
+  <!--<filter-mapping>-->
+    <!--<filter-name>CharacterEncodingFilter</filter-name>-->
+    <!--<url-pattern>/*</url-pattern>-->
+  <!--</filter-mapping>-->
+
+  <servlet>
+    <servlet-name>dispatcher</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:spring-mvc.xml</param-value>
+    </init-param>
+    <init-param>
+      <param-name>dispatchOptionsRequest</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <!--<load-on-startup>1</load-on-startup>-->
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>dispatcher</servlet-name>
+    <url-pattern>/</url-pattern>
+    <!--拦截/*，这是一个错误的方式，请求可以走到Action中，但转到jsp时再次被拦截，不能访问到jsp。
+			拦截/，restful风格 弊端：会导致静态文件（jpg,js,css）被拦截后不能正常显示。解决办法看dispatcher-->
+  </servlet-mapping>
+
+  <!-- Spring会创建一个WebApplicationContext上下文，称为父上下文（父容器） ，保存在 ServletContext中，key是WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE的值。
+	可以使用Spring提供的工具类取出上下文对象：WebApplicationContextUtils.getWebApplicationContext(ServletContext);
+
+	DispatcherServlet是一个Servlet,可以同时配置多个，每个 DispatcherServlet有一个自己的上下文对象（WebApplicationContext），称为子上下文（子容器），子上下文可以访问父上下文中的内容，
+	但父上下文不能访问子上下文中的内容。 它也保存在 ServletContext中，key是"org.springframework.web.servlet.FrameworkServlet.CONTEXT"+Servlet名称。当一个Request对象产生时，
+	会把这个子上下文对象（WebApplicationContext）保存在Request对象中，key是DispatcherServlet.class.getName() + ".CONTEXT"。
+	可以使用工具类取出上下文对象：RequestContextUtils.getWebApplicationContext(request);-->
+</web-app>
